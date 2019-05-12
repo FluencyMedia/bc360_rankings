@@ -1,11 +1,13 @@
 view: arch_terms_base {
+  label: "Search Term Architecture"
   # sql_table_name: mx_rankings.arch_terms_base_gs ;;
 
   derived_table: {
     sql: SELECT
           ROW_NUMBER() OVER () row_index,
-          *
-        FROM `bc360-main.mx_rankings.arch_terms_base_gs`;;
+          scan_month,
+          * EXCEPT(scan_month)
+        FROM `bc360-main.mx_rankings.flat_terms`;;
   }
 
   dimension: row_index {
@@ -14,49 +16,40 @@ view: arch_terms_base {
     hidden: yes
   }
 
-  dimension_group: date {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: ${TABLE}.Date ;;
+  dimension: scan_month {
+    type: date
+    hidden: yes
+    sql: ${TABLE}.scan_month ;;
   }
 
   dimension: funnel_position {
     type: string
-    sql: ${TABLE}.Funnel_Position ;;
+    sql: ${TABLE}.funnel_position ;;
   }
 
   dimension: offering {
     type: string
-    sql: ${TABLE}.Offering ;;
+    sql: ${TABLE}.offering ;;
   }
 
   dimension: search_term {
     type: string
-    sql: ${TABLE}.Search_Term ;;
+    sql: ${TABLE}.search_term ;;
   }
 
   dimension: service {
     type: string
-    sql: ${TABLE}.Service ;;
+    sql: ${TABLE}.service ;;
   }
 
   dimension: specialty {
     type: string
-    sql: ${TABLE}.Specialty ;;
+    sql: ${TABLE}.specialty ;;
   }
 
   dimension: tier {
     type: string
-    sql: ${TABLE}.Tier ;;
+    sql: ${TABLE}.tier ;;
   }
 
   measure: count {

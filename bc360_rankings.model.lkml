@@ -9,10 +9,10 @@ include: "*.view.lkml"
 label: "BC360 - Rankings"
 
 explore: arch_terms_base {
-  join: mx_rankings_flat {
+  join: mx_rankings_core {
     type: left_outer
     relationship: many_to_many
-    sql_on: ${arch_terms_base.search_term} = ${mx_rankings_flat.search_term} ;;
+    sql_on: ${arch_terms_base.search_term} = ${mx_rankings_core.search_term} ;;
   }
 
 }
