@@ -1,12 +1,12 @@
 view: arch_terms_base {
   label: "Search Term Architecture"
-  # sql_table_name: mx_rankings.arch_terms_base_gs ;;
 
   derived_table: {
+    datagroup_trigger: dg_bc360_rankings
+
     sql: SELECT
           ROW_NUMBER() OVER () row_index,
-          scan_month,
-          * EXCEPT(scan_month)
+          *
         FROM `bc360-main.mx_rankings.flat_terms`;;
   }
 
@@ -35,6 +35,13 @@ view: arch_terms_base {
   dimension: search_term {
     type: string
     sql: ${TABLE}.search_term ;;
+  }
+
+  measure: search_terms_scanned {
+    label: "# Terms Scanned (Unique)"
+    description: "Count of unique terms in scanned set"
+    type: max
+    sql: ${TABLE}.search_terms_scanned ;;
   }
 
   dimension: service {

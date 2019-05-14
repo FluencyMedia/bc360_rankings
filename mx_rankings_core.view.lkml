@@ -1,11 +1,12 @@
 view: mx_rankings_core {
-  # sql_table_name: mx_rankings.mx_rankings_core ;;
+  label: "Search Term Rankings"
 
   derived_table: {
+    datagroup_trigger: dg_bc360_rankings
+
     sql: SELECT
             ROW_NUMBER() OVER () row_index,
-            scan_month,
-            * EXCEPT(scan_month)
+            *
           FROM `bc360-main.mx_rankings.mx_rankings_core`;;
   }
 
@@ -76,6 +77,7 @@ view: mx_rankings_core {
   }
 
   measure: rank_max {
+    label: "Rank - Max"
     type: min
     sql: ${TABLE}.rank ;;
   }
@@ -91,12 +93,20 @@ view: mx_rankings_core {
   }
 
   measure: result_urls_unique {
+    label: "# Results (Unique)"
     type: sum
     sql: ${TABLE}.result_urls_unique ;;
   }
 
   dimension: search_term {
     type: string
+    sql: ${TABLE}.search_term ;;
+  }
+
+  measure: search_terms_unique {
+    label: "# Search Terms (Unique)"
+    description: "Count of unique terms from result set"
+    type: count_distinct
     sql: ${TABLE}.search_term ;;
   }
 
