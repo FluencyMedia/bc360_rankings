@@ -2,7 +2,7 @@ view: mx_rankings_core {
   label: "Search Term Rankings"
 
   derived_table: {
-    datagroup_trigger: dg_bc360_rankings
+    # datagroup_trigger: dg_bc360_rankings
 
     sql: SELECT
             ROW_NUMBER() OVER () row_index,
