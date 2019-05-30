@@ -70,7 +70,7 @@ view: mx_rankings_core {
     type: string
     sql: ${TABLE}.path_relative ;;
     link: {
-      label: "VISIT: {{ mx_rankings_core.page_title._value }}"
+      label: "{{ value }}"
       url: "{{ mx_rankings_core.result_url._value }}"
     }
   }
