@@ -69,6 +69,15 @@ view: mx_rankings_core {
   dimension: path_relative {
     type: string
     sql: ${TABLE}.path_relative ;;
+    link: {
+      label: "VISIT: {{ mx_rankings_core.page_title._value }}"
+      url: "{{ mx_rankings_core.result_url._value }}"
+    }
+  }
+
+  dimension: page_title {
+    type: string
+    sql: ${TABLE}.page_title ;;
   }
 
   dimension: rank {

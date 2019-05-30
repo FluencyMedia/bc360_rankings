@@ -9,7 +9,7 @@ persist_with: dg_bc360_rankings
 label: "BC360 - Rankings"
 
 explore: arch_terms_base {
-  label: "BH - Rankings [MAIN]"
+  label: "BC360 - Rankings [ALL RESULTS]"
   join: mx_rankings_core {
     type: left_outer
     relationship: many_to_many
