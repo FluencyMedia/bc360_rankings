@@ -2,7 +2,7 @@ view: mx_rankings_core {
   label: "Search Term Rankings"
 
   derived_table: {
-    # datagroup_trigger: dg_bc360_rankings
+    datagroup_trigger: dg_bc360_rankings
 
     sql: SELECT
             ROW_NUMBER() OVER () row_index,
@@ -70,7 +70,7 @@ view: mx_rankings_core {
     type: string
     sql: ${TABLE}.path_relative ;;
     link: {
-      label: "{{ value }}"
+      label: "VISIT: {{ mx_rankings_core.page_title._value }}"
       url: "{{ mx_rankings_core.result_url._value }}"
     }
   }
