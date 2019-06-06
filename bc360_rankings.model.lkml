@@ -6,10 +6,10 @@ include: "*.view.lkml"
 
 persist_with: dg_bc360_rankings
 
-label: "BC360 - Rankings"
+label: "Beaumont Health"
 
 explore: arch_terms_base {
-  label: "BC360 - Rankings [ALL RESULTS]"
+  label: "BH - Rankings [ALL]"
   join: mx_rankings_core {
     type: left_outer
     relationship: many_to_many
