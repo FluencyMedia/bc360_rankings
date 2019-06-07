@@ -11,9 +11,9 @@ view: arch_terms_base {
   }
 
   dimension: row_index {
+    hidden: yes
     type: number
     primary_key: yes
-    hidden: yes
   }
 
   dimension: scan_month {
@@ -23,16 +23,25 @@ view: arch_terms_base {
   }
 
   dimension: funnel_position {
+    view_label: "6. Search Term Parameters"
+    group_item_label: "Funnel Position"
+
     type: string
     sql: ${TABLE}.funnel_position ;;
   }
 
   dimension: offering {
+    view_label: "6. Search Term Parameters"
+    group_item_label: "Service Offering"
+
     type: string
     sql: ${TABLE}.offering ;;
   }
 
   dimension: search_term {
+    view_label: "6. Search Term Parameters"
+    group_item_label: "Search Term"
+
     type: string
     sql: ${TABLE}.search_term ;;
   }

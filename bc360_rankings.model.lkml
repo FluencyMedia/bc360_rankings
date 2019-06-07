@@ -9,7 +9,7 @@ persist_with: dg_bc360_rankings
 label: "Beaumont Health"
 
 explore: arch_terms_base {
-  label: "BH - Rankings [ALL]"
+  label: "BC360 - Rankings [All Clients, All Domains]"
   join: mx_rankings_core {
     type: left_outer
     relationship: many_to_many

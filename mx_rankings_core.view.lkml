@@ -57,7 +57,7 @@ view: mx_rankings_core {
   }
 
   dimension: engine {
-    view_label: "6. Search Parameters"
+    view_label: "5. Search Engine Parameters"
     label: "Search Engine"
 
     type: string
@@ -65,8 +65,8 @@ view: mx_rankings_core {
   }
 
   dimension: location {
-    view_label: "6. Search Parameters"
-    label: "Location"
+    view_label: "5. Search Engine Parameters"
+    label: "Search Location"
 
     type: string
     sql: ${TABLE}.location ;;
