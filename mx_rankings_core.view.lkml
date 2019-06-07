@@ -17,7 +17,7 @@ view: mx_rankings_core {
   }
 
   dimension: scan_month {
-    view_label: "4. Timeframes"
+    view_label: "1. Timeframes"
     label: "Month Scanned"
     type: date
     hidden: yes
@@ -25,7 +25,7 @@ view: mx_rankings_core {
   }
 
   dimension_group: month {
-    view_label: "4. Timeframes"
+    view_label: "1. Timeframes"
     label: "Scan Period"
     type: time
 
@@ -57,7 +57,7 @@ view: mx_rankings_core {
   }
 
   dimension: engine {
-    view_label: "5. Search Engine Parameters"
+    view_label: "2. Channel Parameters"
     label: "Search Engine"
 
     type: string
@@ -65,7 +65,7 @@ view: mx_rankings_core {
   }
 
   dimension: location {
-    view_label: "5. Search Engine Parameters"
+    view_label: "2. Channel Parameters"
     label: "Search Location"
 
     type: string
@@ -136,8 +136,8 @@ view: mx_rankings_core {
     label: "# Pages Returned (Total)"
     description: "Total count of Page URLs returned (includes dupes)"
 
-    type: sum
-    sql: ${TABLE}.result_urls_total ;;
+    type: number
+    sql: COUNT(${TABLE}.result_urls_total) ;;
   }
 
   measure: result_urls_unique {
@@ -145,8 +145,9 @@ view: mx_rankings_core {
     label: "# Pages Returned (Unique)"
     description: "Count of unique Page URLs returned (no dupes)"
 
-    type: sum
-    sql: ${TABLE}.result_urls_unique ;;
+    type: number
+
+    sql: COUNT(DISTINCT ${TABLE}.result_urls_unique) ;;
   }
 
   dimension: search_term {

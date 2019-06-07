@@ -31,7 +31,7 @@ view: arch_terms_base {
   }
 
   dimension: offering {
-    view_label: "6. Search Term Parameters"
+    view_label: "5. Services"
     group_item_label: "Service Offering"
 
     type: string
@@ -47,29 +47,35 @@ view: arch_terms_base {
   }
 
   measure: search_terms_scanned {
+    view_label: "6. Search Term Parameters"
     label: "# Terms Scanned (Unique)"
     description: "Count of unique terms in scanned set"
-    type: max
+    type: count_distinct
     sql: ${TABLE}.search_terms_scanned ;;
   }
 
   dimension: service {
+    view_label: "5. Services"
+    group_item_label: "Service Line"
+
     type: string
     sql: ${TABLE}.service ;;
   }
 
   dimension: specialty {
+    view_label: "5. Services"
+    group_item_label: "Service Specialty"
+
     type: string
     sql: ${TABLE}.specialty ;;
   }
 
   dimension: tier {
+    view_label: "6. Search Term Parameters"
+    group_item_label: "Tier"
+
     type: string
     sql: ${TABLE}.tier ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: []
-  }
 }
