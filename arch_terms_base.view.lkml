@@ -6,7 +6,8 @@ view: arch_terms_base {
 
     sql: SELECT
           ROW_NUMBER() OVER () row_index,
-          *
+          *,
+          CAST(1 AS INT64) num_terms_scanned
         FROM `bc360-main.mx_rankings.flat_terms`;;
   }
 
@@ -50,8 +51,8 @@ view: arch_terms_base {
     view_label: "6. Search Term Parameters"
     label: "# Terms Scanned (Unique)"
     description: "Count of unique terms in scanned set"
-    type: count_distinct
-    sql: ${TABLE}.search_terms_scanned ;;
+    type: sum
+    sql: ${TABLE}.num_terms_scanned ;;
   }
 
   dimension: service {

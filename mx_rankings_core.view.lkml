@@ -6,6 +6,7 @@ view: mx_rankings_core {
 
     sql: SELECT
             ROW_NUMBER() OVER () row_index,
+            CAST(1 AS INT64) num_results_returned,
             *
           FROM `bc360-main.mx_rankings.mx_rankings_core`;;
   }
