@@ -126,13 +126,14 @@ view: struct_rankings_base {
 
   dimension: dim_results_count {
     label: "# Results [01]"
+    hidden: yes
     type: number
     value_format_name: decimal_0
     sql: (SELECT count(*) FROM UNNEST(${TABLE}.urls));;
   }
 
   measure: num_results {
-    label: "# Results [02]"
+    label: "# Results"
     type: sum
     value_format_name: decimal_0
     sql: ${dim_results_count} ;;
