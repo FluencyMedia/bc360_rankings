@@ -6,8 +6,7 @@ view: arch_terms_base {
 
     sql: SELECT
           ROW_NUMBER() OVER () row_index,
-          *,
-          CAST(1 AS INT64) num_terms_scanned
+          *
         FROM `bc360-main.mx_rankings.flat_terms`;;
   }
 
@@ -18,14 +17,16 @@ view: arch_terms_base {
   }
 
   dimension: scan_month {
+    view_label: "6. Search Term Parameters"
+    label: "Month Scanned"
     type: date
-    hidden: yes
+    hidden: no
     sql: ${TABLE}.scan_month ;;
   }
 
   dimension: funnel_position {
     view_label: "6. Search Term Parameters"
-    group_item_label: "Funnel Position"
+    label: "Funnel Position"
 
     type: string
     sql: ${TABLE}.funnel_position ;;
@@ -51,6 +52,7 @@ view: arch_terms_base {
     view_label: "6. Search Term Parameters"
     label: "# Terms Scanned (Unique)"
     description: "Count of unique terms in scanned set"
+
     type: sum
     sql: ${TABLE}.num_terms_scanned ;;
   }
