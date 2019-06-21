@@ -22,6 +22,8 @@ explore: arch_terms_base {
 explore: struct_rankings_base {
   label: "BC360 - Ranking [TEST]"
 
+  hidden: yes
+
   join: struct_rankings_base__urls {
     sql: ,UNNEST(struct_rankings_base.urls) as urls ;;
     relationship: one_to_many
