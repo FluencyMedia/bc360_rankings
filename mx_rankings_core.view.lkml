@@ -117,6 +117,28 @@ view: mx_rankings_core {
     sql: ${TABLE}.rank ;;
   }
 
+  dimension: rank_binned {
+    view_label: "8. Page Results"
+    label: "Rank - Binned"
+
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.rank = 1 ;;
+        label: "Top Position"
+      }
+      when: {
+        sql: ${TABLE}.rank <= 10 ;;
+        label: "First Page"
+      }
+      when: {
+        sql: ${TABLE}.rank <= 50 ;;
+        label: "Ranked"
+      }
+      else: "[Unranked]"
+      }
+  }
+
   measure: rank_max {
     view_label: "8. Page Results"
     label: "Rank - Max"
@@ -149,8 +171,9 @@ view: mx_rankings_core {
 
     type: number
 
-    sql: COUNT(DISTINCT ${TABLE}.result_urls_unique) ;;
-  }
+    # sql: COUNT(DISTINCT ${TABLE}.result_urls_unique) ;;
+    sql: COUNT(${TABLE}.result_urls_unique) ;;
+    }
 
   dimension: search_term {
     view_label: "7. Search Term Results"
