@@ -111,6 +111,7 @@ view: mx_rankings_core {
   dimension: rank {
     view_label: "8. Page Results"
     label: "Page - Rank"
+    description: "For use as a row or column"
 
     type: number
     sql: ${TABLE}.rank ;;
