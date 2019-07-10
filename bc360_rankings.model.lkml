@@ -34,4 +34,10 @@ explore: struct_rankings_base {
     relationship: one_to_many
   }
 
+  join: location_meta {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${location_meta.location} = ${struct_rankings_base.location} ;;
+  }
+
 }
