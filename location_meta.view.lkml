@@ -1,5 +1,16 @@
 view: location_meta {
-  sql_table_name: mx_rankings.location_meta ;;
+
+  derived_table: {
+    datagroup_trigger: dg_bc360_rankings
+
+    sql: SELECT
+            label,
+            latitude,
+            longitude,
+            location,
+            zipcode
+          FROM `bc360-main.mx_rankings.location_meta`;;
+  }
 
   dimension: label {
     view_label: "2. Channel Parameters"
