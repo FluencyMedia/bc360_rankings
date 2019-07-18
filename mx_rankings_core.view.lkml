@@ -201,4 +201,15 @@ view: mx_rankings_core {
     sql: ${TABLE}.search_type ;;
   }
 
+  measure: results_per_term {
+    view_label: "7. Search Term Results"
+    label: "# Results / Term"
+    description: "Avg Unique Pages Returns per Unique Term"
+
+    type: number
+    value_format_name: decimal_1
+
+    sql: SAFE_DIVIDE(${result_urls_unique},${search_terms_unique}) ;;
+  }
+
 }
