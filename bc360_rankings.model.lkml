@@ -20,7 +20,8 @@ explore: arch_terms_base {
 
 explore: bc360_rankings_bc360 {
   from: arch_terms_base
-  label: "BC360 - Rankings [All 02]"
+  label: "BC360 - Rankings [FOR REPLACEMENT]"
+  hidden: yes
   join: mx_rankings_core {
     type: left_outer
     relationship: many_to_many
