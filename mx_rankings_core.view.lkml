@@ -125,11 +125,27 @@ view: mx_rankings_core {
     case: {
       when: {
         sql: ${TABLE}.rank = 1 ;;
-        label: "Top Position"
+        label: "Top Result"
+      }
+      when: {
+        sql: ${TABLE}.rank <= 3 ;;
+        label: "Top Three Results"
       }
       when: {
         sql: ${TABLE}.rank <= 10 ;;
         label: "First Page"
+      }
+      when: {
+        sql: ${TABLE}.rank <= 20 ;;
+        label: "Second Page"
+      }
+      when: {
+        sql: ${TABLE}.rank <= 30 ;;
+        label: "Third Page"
+      }
+      when: {
+        sql: ${TABLE}.rank <= 40 ;;
+        label: "Fourth Page"
       }
       when: {
         sql: ${TABLE}.rank <= 50 ;;
