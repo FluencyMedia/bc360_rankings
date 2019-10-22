@@ -20,7 +20,7 @@ view: arch_terms_base {
     view_label: "6. Search Term Parameters"
     label: "Month Scanned"
     type: date
-    hidden: no
+    hidden: yes
     sql: ${TABLE}.scan_month ;;
   }
 
