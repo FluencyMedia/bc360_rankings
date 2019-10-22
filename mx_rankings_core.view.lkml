@@ -149,7 +149,7 @@ view: mx_rankings_core {
       }
       when: {
         sql: ${TABLE}.rank <= 50 ;;
-        label: "Ranked"
+        label: "Fifth Page"
       }
       else: "[Unranked]"
       }
