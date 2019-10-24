@@ -188,7 +188,6 @@ view: mx_rankings_core {
     type: number
 
     sql: COUNT(DISTINCT ${TABLE}.result_url) ;;
-    # sql: COUNT(${TABLE}.result_urls_unique) ;;
     }
 
   dimension: search_term {
