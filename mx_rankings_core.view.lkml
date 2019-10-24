@@ -177,7 +177,7 @@ view: mx_rankings_core {
     description: "Total count of Page URLs returned (includes dupes)"
 
     type: number
-    sql: COUNT(${TABLE}.result_urls_total) ;;
+    sql: COUNT(${TABLE}.result_url) ;;
   }
 
   measure: result_urls_unique {
@@ -187,8 +187,8 @@ view: mx_rankings_core {
 
     type: number
 
-    # sql: COUNT(DISTINCT ${TABLE}.result_urls_unique) ;;
-    sql: COUNT(${TABLE}.result_urls_unique) ;;
+    sql: COUNT(DISTINCT ${TABLE}.result_url) ;;
+    # sql: COUNT(${TABLE}.result_urls_unique) ;;
     }
 
   dimension: search_term {
