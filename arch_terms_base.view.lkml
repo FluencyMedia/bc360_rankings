@@ -48,6 +48,14 @@ view: arch_terms_base {
     sql: ${TABLE}.search_term ;;
   }
 
+  dimension: search_term_status {
+    view_label: "6. Search Term Parameters"
+    group_item_label: "Search Term Status"
+
+    type: string
+    sql: ${TABLE}.status ;;
+    }
+
   measure: search_terms_scanned {
     view_label: "6. Search Term Parameters"
     label: "# Terms Scanned (Unique)"
