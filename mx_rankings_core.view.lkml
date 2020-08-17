@@ -1,15 +1,7 @@
 view: mx_rankings_core {
   label: "Search Term Rankings"
 
-  derived_table: {
-    datagroup_trigger: dg_bc360_rankings
-
-    sql: SELECT
-            ROW_NUMBER() OVER () row_index,
-            CAST(1 AS INT64) num_results_returned,
-            *
-          FROM `bc360-main.mx_rankings.mx_rankings_core`;;
-  }
+  sql_table_name: `bc360-main.mx_rankings.mx_rankings_core`;;
 
   dimension: row_index {
     hidden: yes
