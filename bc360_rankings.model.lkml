@@ -8,32 +8,6 @@ persist_with: dg_bc360_rankings
 
 label: "BC360 - All Clients"
 
-explore: arch_terms_base {
-  label: "BC360 - Rankings [All]"
-  hidden: yes
-
-  join: mx_rankings_core {
-    type: left_outer
-    relationship: many_to_many
-    sql_on: # ${arch_terms_base.search_term} = ${mx_rankings_core.search_term} AND
-            ${arch_terms_base.scan_month} = ${mx_rankings_core.scan_month}  ;;
-  }
-}
-
-explore: bc360_rankings_bc360 {
-  from: arch_terms_base
-  label: "BC360 - Rankings [FOR REPLACEMENT]"
-  hidden: yes
-  join: mx_rankings_core {
-    type: left_outer
-    relationship: many_to_many
-    sql_on: # ${bc360_rankings_bc360.search_term} = ${mx_rankings_core.search_term} AND
-      ${bc360_rankings_bc360.scan_month} = ${mx_rankings_core.scan_month}  ;;
-  }
-}
-
-
-
 explore: struct_rankings_base {
   label: "BC360 - Rankings [STRUCTURED]"
 
@@ -55,4 +29,31 @@ explore: struct_rankings_base {
   #   sql_on: ${location_meta.location} = ${struct_rankings_base.location} ;;
   # }
 
+}
+
+
+########### LEGACY EXPLORES ###########
+
+explore: arch_terms_base {
+  label: "BC360 - Rankings [All]"
+  hidden: yes
+
+  join: mx_rankings_core {
+    type: left_outer
+    relationship: many_to_many
+    sql_on: # ${arch_terms_base.search_term} = ${mx_rankings_core.search_term} AND
+      ${arch_terms_base.scan_month} = ${mx_rankings_core.scan_month}  ;;
+  }
+}
+
+explore: bc360_rankings_bc360 {
+  from: arch_terms_base
+  label: "BC360 - Rankings [FOR REPLACEMENT]"
+  hidden: yes
+  join: mx_rankings_core {
+    type: left_outer
+    relationship: many_to_many
+    sql_on: # ${bc360_rankings_bc360.search_term} = ${mx_rankings_core.search_term} AND
+      ${bc360_rankings_bc360.scan_month} = ${mx_rankings_core.scan_month}  ;;
+  }
 }
