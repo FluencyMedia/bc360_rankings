@@ -1,8 +1,7 @@
 connection: "bc360_main"
 
-include: "//bc360_admin/bc360_triggers.lkml"
+include: "//bc360_admin/**/*bc360_triggers.lkml"
 
-include: "*.view.lkml"
 include: "/**/*.view.lkml"
 
 persist_with: dg_bc360_rankings
@@ -11,6 +10,7 @@ label: "BC360 - All Clients"
 
 explore: arch_terms_base {
   label: "BC360 - Rankings [All]"
+  hidden: yes
 
   join: mx_rankings_core {
     type: left_outer
