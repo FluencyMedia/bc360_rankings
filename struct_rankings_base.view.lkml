@@ -121,7 +121,7 @@ view: struct_rankings_base {
     label: "% Ranked"
     type: number
     value_format_name: percent_1
-    sql: 1.0*(${num_terms_returned})/NULLIF(${num_terms_scanned},0) ;;
+    sql: NULLIF((1.0*(${num_terms_returned})/NULLIF(${num_terms_scanned},0)),0) ;;
   }
 
   dimension: dim_results_count {
@@ -244,6 +244,7 @@ view: struct_rankings_base__urls {
   }
 
   dimension: result_url {
+    primary_key: yes
     type: string
     sql: ${TABLE}.result_url ;;
   }
