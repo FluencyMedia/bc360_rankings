@@ -10,6 +10,7 @@ label: "BC360 - All Clients"
 
 explore: arch_terms_base {
   label: "BC360 - Rankings [All]"
+
   join: mx_rankings_core {
     type: left_outer
     relationship: many_to_many
@@ -33,9 +34,9 @@ explore: bc360_rankings_bc360 {
 
 
 explore: struct_rankings_base {
-  label: "BC360 - Ranking [TEST]"
+  label: "BC360 - Rankings [STRUCTURED]"
 
-  hidden: yes
+  hidden: no
 
   join: struct_rankings_base__urls {
     sql: ,UNNEST(struct_rankings_base.urls) as urls ;;
