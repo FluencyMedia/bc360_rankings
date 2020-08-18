@@ -9,7 +9,7 @@ persist_with: dg_bc360_rankings
 label: "BC360 - All Clients"
 
 explore: struct_rankings_base {
-  label: "BC360 - Rankings [STRUCTURED]"
+  label: "BC360 - Rankings"
 
   hidden: no
 
