@@ -1,14 +1,18 @@
+include: "/**/*.view.lkml"
+
 view: struct_rankings_base {
-  label: "STRUCTURED RANKINGS"
+  label: "Ranking Fields"
 
-  derived_table: {
-    datagroup_trigger: dg_bc360_rankings
+  # derived_table: {
+  #   datagroup_trigger: dg_bc360_rankings
+  #
+  #   sql: SELECT
+  #         ROW_NUMBER() OVER () row_index,
+  #         *
+  #       FROM `bc360-main.mx_rankings.struct_rankings_base`  ;;
+  # }
 
-    sql: SELECT
-          ROW_NUMBER() OVER () row_index,
-          *
-        FROM `bc360-main.mx_rankings.struct_rankings_base`  ;;
-  }
+  sql_table_name: bc360-main.mx_rankings.struct_rankings_base ;;
 
   dimension: row_index {
     hidden: yes
@@ -195,124 +199,4 @@ view: struct_rankings_base {
   }
 
 
-}
-
-view: struct_rankings_base__result_details {
-  dimension: postcode {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.postcode ;;
-  }
-
-  dimension: sub_rank {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.sub_rank ;;
-  }
-
-  dimension: telephone {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.telephone ;;
-  }
-}
-
-view: struct_rankings_base__urls {
-  dimension: directory {
-    type: string
-    sql: ${TABLE}.directory ;;
-  }
-
-  dimension: domain {
-    type: string
-    sql: ${TABLE}.domain ;;
-  }
-
-  dimension: path_full {
-    type: string
-    sql: ${TABLE}.path_full ;;
-  }
-
-  dimension: path_page {
-    type: string
-    sql: ${TABLE}.path_page ;;
-  }
-
-  dimension: path_relative {
-    type: string
-    sql: ${TABLE}.path_relative ;;
-  }
-
-  dimension: result_url {
-    primary_key: yes
-    type: string
-    sql: ${TABLE}.result_url ;;
-  }
-
-}
-
-view: struct_rankings_base__job_meta {
-  dimension: id {
-    primary_key: yes
-    type: number
-    sql: ${TABLE}.id ;;
-  }
-
-  dimension: batch_id {
-    type: string
-    sql: ${TABLE}.batch_id ;;
-  }
-
-  dimension: cid {
-    primary_key: yes
-    type: string
-    sql: ${TABLE}.cid ;;
-  }
-
-
-  measure: num_results_total {
-    label: "# Results (Total)"
-    type: count_distinct
-    value_format_name: decimal_0
-    sql: ${TABLE}.cid ;;
-  }
-
-  dimension_group: created {
-    hidden: yes
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.created ;;
-  }
-
-  dimension: job_id {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.job_id ;;
-  }
-
-  dimension: job_status {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.job_status ;;
-  }
-
-  dimension: source {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.source ;;
-  }
-
-  dimension: timestamp {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.timestamp ;;
-  }
 }

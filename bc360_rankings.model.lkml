@@ -3,6 +3,7 @@ connection: "bc360_main"
 include: "//bc360_admin/bc360_triggers.lkml"
 
 include: "*.view.lkml"
+include: "/**/*.view.lkml"
 
 persist_with: dg_bc360_rankings
 
@@ -39,19 +40,19 @@ explore: struct_rankings_base {
   hidden: no
 
   join: struct_rankings_base__urls {
-    sql: ,UNNEST(struct_rankings_base.urls) as urls ;;
+    sql: LEFT JOIN UNNEST(struct_rankings_base.urls) as struct_rankings_base__urls ;;
     relationship: one_to_many
   }
 
   join: struct_rankings_base__result_details {
-    sql: ,UNNEST(struct_rankings_base.result_details) as result_details ;;
+    sql: LEFT JOIN UNNEST(struct_rankings_base.result_details) as struct_rankings_base__result_details ;;
     relationship: one_to_many
   }
 
-  join: location_meta {
-    relationship: many_to_one
-    type: left_outer
-    sql_on: ${location_meta.location} = ${struct_rankings_base.location} ;;
-  }
+  # join: location_meta {
+  #   relationship: many_to_one
+  #   type: left_outer
+  #   sql_on: ${location_meta.location} = ${struct_rankings_base.location} ;;
+  # }
 
 }
