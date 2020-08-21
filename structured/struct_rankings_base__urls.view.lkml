@@ -6,6 +6,7 @@ view: struct_rankings_base__urls {
     description: "Top-level directory in URL"
     type: string
     sql: ${TABLE}.directory ;;
+    # sql: CONCAT("/", SPLIT(${path_full},"/")[SAFE_OFFSET(1)]) ;;
   }
 
   dimension: domain {

@@ -20,17 +20,23 @@ view: struct_rankings_base {
   }
 
   dimension: engine {
+    label: "Search Engine"
+    description: "google | google-mobile"
+
     type: string
     sql: ${TABLE}.engine ;;
   }
 
   dimension: funnel_position {
+    label: "Funnel Position"
+    description: "Upper Funnel | Middle Funnel | Lower Funnel"
     type: string
     sql: ${TABLE}.funnel_position ;;
   }
 
   dimension: job_meta {
     hidden: yes
+    description: "Nested record with job information"
     sql: ${TABLE}.job_meta ;;
   }
 
@@ -51,6 +57,7 @@ view: struct_rankings_base {
 
   dimension: result_details {
     hidden: yes
+    description: "Nested record with result details"
     sql: ${TABLE}.result_details ;;
   }
 
@@ -92,6 +99,13 @@ view: struct_rankings_base {
   }
 
   dimension: urls {
+    description: "Nested record with URL details"
+    hidden: yes
+    sql: ${TABLE}.urls ;;
+  }
+
+  dimension: domains {
+    description: "Nested record with domain details"
     hidden: yes
     sql: ${TABLE}.urls ;;
   }
@@ -196,6 +210,30 @@ view: struct_rankings_base {
     type: average
     value_format_name: decimal_1
     sql: ${rank} ;;
+  }
+
+  dimension: rank_first_page {
+    label: "Rank - First Page"
+    description: "First Page > Ranked > Unranked"
+    case: {
+      when: {
+        sql: ${rank} = 10;;
+        label: "First Page"
+      }
+      when: {
+        sql: ${rank} >= 50 ;;
+        label: "Ranked"
+      }
+      else: "Unranked"
+    }
+  }
+
+  dimension: result_qualified{
+    label: "Result - Qualified"
+    description: "Categorizes whether unique result qualifies as meaningful"
+    type: yesno
+
+    sql: (${rank_first_page} = "First Page") AND (${funnel_position} != "Upper Funnel") ;;
   }
 
 

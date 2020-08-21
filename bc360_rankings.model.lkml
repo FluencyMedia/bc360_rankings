@@ -9,6 +9,7 @@ persist_with: dg_bc360_rankings
 label: "BC360 - All Clients"
 
 explore: struct_rankings_base {
+  view_label: "Rankings - ALL"
   label: "BC360 - Rankings"
 
   hidden: no
@@ -20,6 +21,11 @@ explore: struct_rankings_base {
 
   join: struct_rankings_base__result_details {
     sql: LEFT JOIN UNNEST(struct_rankings_base.result_details) as struct_rankings_base__result_details ;;
+    relationship: one_to_many
+  }
+
+  join: struct_rankings_base__domains {
+    sql: LEFT JOIN UNNEST(struct_rankings_base.domains) as struct_rankings_base__domains ;;
     relationship: one_to_many
   }
 
