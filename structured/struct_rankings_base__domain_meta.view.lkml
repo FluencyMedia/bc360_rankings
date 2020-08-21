@@ -1,6 +1,6 @@
 include: "/**/*.view.lkml"
 
-view: struct_rankings_base__domains {
+view: struct_rankings_base__domain_meta {
   label: "Domain Details"
 
   dimension: client {

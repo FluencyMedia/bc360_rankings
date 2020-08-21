@@ -24,16 +24,10 @@ explore: struct_rankings_base {
     relationship: one_to_many
   }
 
-  join: struct_rankings_base__domains {
-    sql: LEFT JOIN UNNEST(struct_rankings_base.domains) as struct_rankings_base__domains ;;
+  join: struct_rankings_base__domain_meta {
+    sql: LEFT JOIN UNNEST(struct_rankings_base.domain_meta) as struct_rankings_base__domain_meta ;;
     relationship: one_to_many
   }
-
-  # join: location_meta {
-  #   relationship: many_to_one
-  #   type: left_outer
-  #   sql_on: ${location_meta.location} = ${struct_rankings_base.location} ;;
-  # }
 
 }
 

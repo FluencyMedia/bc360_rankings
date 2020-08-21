@@ -17,6 +17,8 @@ view: struct_rankings_base {
   dimension: row_index {
     hidden: yes
     primary_key: yes
+
+    sql: ${TABLE}.row_index ;;
   }
 
   dimension: engine {
@@ -104,10 +106,10 @@ view: struct_rankings_base {
     sql: ${TABLE}.urls ;;
   }
 
-  dimension: domains {
+  dimension: domain_meta {
     description: "Nested record with domain details"
     hidden: yes
-    sql: ${TABLE}.urls ;;
+    sql: ${TABLE}.domain_meta ;;
   }
 
   measure: num_terms_scanned {
