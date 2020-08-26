@@ -207,11 +207,18 @@ view: struct_rankings_base {
     sql: ${rank} ;;
   }
 
+  dimension: rank_dim {
+    label: "Rank - Dimension"
+    type: number
+
+    sql: SAFE_CAST(${rank} AS INT64) ;;
+  }
+
   measure: rank_avg {
     label: "Rank - Avg"
     type: average
     value_format_name: decimal_1
-    sql: ${rank} ;;
+    sql: ${rank_dim} ;;
   }
 
   dimension: rank_first_page {
@@ -219,11 +226,11 @@ view: struct_rankings_base {
     description: "First Page > Ranked > Unranked"
     case: {
       when: {
-        sql: ${rank} <= 10;;
+        sql: ${rank_dim} <= 10;;
         label: "First Page"
       }
       when: {
-        sql: ${rank} <= 50 ;;
+        sql: ${rank_dim} <= 50 ;;
         label: "Ranked"
       }
       else: "Unranked"
@@ -236,23 +243,23 @@ view: struct_rankings_base {
 
     case: {
       when: {
-        sql: ${rank} <= 10 ;;
+        sql: ${rank_dim} <= 10 ;;
         label: "First Page"
       }
       when: {
-        sql: ${rank} <= 20 ;;
+        sql: ${rank_dim} <= 20 ;;
         label: "Second Page"
       }
       when: {
-        sql: ${rank} <= 30 ;;
+        sql: ${rank_dim} <= 30 ;;
         label: "Third Page"
       }
       when: {
-        sql: ${rank} <= 40 ;;
+        sql: ${rank_dim} <= 40 ;;
         label: "Fourth Page"
       }
       when: {
-        sql: ${rank} <= 50 ;;
+        sql: ${rank_dim} <= 50 ;;
         label: "Fifth Page"
       }
       else: "Unranked"
