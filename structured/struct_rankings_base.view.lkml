@@ -134,7 +134,7 @@ view: struct_rankings_base {
     label: "# Terms Unranked"
     type: number
     value_format_name: decimal_0
-    sql: ${num_terms_scanned}-${num_terms_returned} ;;
+    sql: NULLIF(${num_terms_scanned}-${num_terms_returned}, 0) ;;
   }
 
   measure: share_terms_ranked {
@@ -156,7 +156,7 @@ view: struct_rankings_base {
     label: "# Results"
     type: sum
     value_format_name: decimal_0
-    sql: ${dim_results_count} ;;
+    sql: NULLIF(${dim_results_count}, 0) ;;
   }
 
   dimension: dim_pages_count {
@@ -219,15 +219,44 @@ view: struct_rankings_base {
     description: "First Page > Ranked > Unranked"
     case: {
       when: {
-        sql: ${rank} = 10;;
+        sql: ${rank} <= 10;;
         label: "First Page"
       }
       when: {
-        sql: ${rank} >= 50 ;;
+        sql: ${rank} <= 50 ;;
         label: "Ranked"
       }
       else: "Unranked"
     }
+  }
+
+  dimension: rank_binned {
+    label: "Ranked Page"
+    description: "Rank by page of results"
+
+    case: {
+      when: {
+        sql: ${rank} <= 10 ;;
+        label: "First Page"
+      }
+      when: {
+        sql: ${rank} <= 20 ;;
+        label: "Second Page"
+      }
+      when: {
+        sql: ${rank} <= 30 ;;
+        label: "Third Page"
+      }
+      when: {
+        sql: ${rank} <= 40 ;;
+        label: "Fourth Page"
+      }
+      when: {
+        sql: ${rank} <= 50 ;;
+        label: "Fifth Page"
+      }
+      else: "Unranked"
+      }
   }
 
   dimension: result_qualified{
