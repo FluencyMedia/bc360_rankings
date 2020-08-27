@@ -14,7 +14,7 @@ view: location_meta {
 
   dimension: label {
     view_label: "2. Channel Parameters"
-    label: "Location"
+    label: "Location Name"
     type: string
     sql: ${TABLE}.label ;;
   }
@@ -32,6 +32,12 @@ view: location_meta {
     primary_key: yes
     type: string
     sql: ${TABLE}.location ;;
+  }
+
+  dimension: zipkey {
+    hidden: yes
+    type: string
+    sql: CAST(${zipcode} AS STRING) ;;
   }
 
   dimension: zipcode {

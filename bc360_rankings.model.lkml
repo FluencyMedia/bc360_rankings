@@ -31,7 +31,7 @@ explore: struct_rankings_base {
 
   join: location_meta {
     relationship: many_to_one
-    sql_on: ${struct_rankings_base.location} = ${location_meta.zipcode} ;;
+    sql_on: ${struct_rankings_base.location} = ${location_meta.zipkey} ;;
   }
 
 }
