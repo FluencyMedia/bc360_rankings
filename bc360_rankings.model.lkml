@@ -29,6 +29,11 @@ explore: struct_rankings_base {
     relationship: one_to_many
   }
 
+  join: location_meta {
+    relationship: many_to_one
+    sql_on: ${struct_rankings_base.location} = ${location_meta.zipcode} ;;
+  }
+
 }
 
 

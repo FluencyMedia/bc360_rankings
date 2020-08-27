@@ -80,6 +80,12 @@ view: struct_rankings_base {
     sql: ${TABLE}.search_term ;;
   }
 
+  dimension: is_term_branded {
+    label: "Branded Terms?"
+    type: yesno
+    sql: ${search_term} LIKE "%beaumont%" ;;
+  }
+
   dimension: search_type {
     type: string
     sql: ${TABLE}.search_type ;;
@@ -217,6 +223,13 @@ view: struct_rankings_base {
   measure: rank_avg {
     label: "Rank - Avg"
     type: average
+    value_format_name: decimal_1
+    sql: ${rank_dim} ;;
+  }
+
+  measure: rank_median {
+    label: "Rank - Median"
+    type: median
     value_format_name: decimal_1
     sql: ${rank_dim} ;;
   }
