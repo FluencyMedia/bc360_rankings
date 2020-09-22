@@ -57,6 +57,12 @@ view: struct_rankings_base {
     sql: ${TABLE}.rank ;;
   }
 
+  dimension: rank_page {
+    label: "Rank - Page"
+    type: number
+    sql: MOD(CAST(${TABLE}.rank AS INT64), 10) ;;
+  }
+
   dimension: result_details {
     hidden: yes
     description: "Nested record with result details"
@@ -77,13 +83,21 @@ view: struct_rankings_base {
 
   dimension: search_term {
     type: string
+    order_by_field: serv_spec_term_order
     sql: ${TABLE}.search_term ;;
   }
 
   dimension: is_term_branded {
-    label: "Branded Terms?"
+    label: "Is Branded?"
     type: yesno
     sql: ${search_term} LIKE "%beaumont%" ;;
+  }
+
+  dimension: branded_vs_unbranded {
+    label: "Branded/Unbranded"
+    type: string
+    sql: IF(${search_term} LIKE "%beaumont%", "Branded", "Unbranded") ;;
+
   }
 
   dimension: search_type {
@@ -96,10 +110,24 @@ view: struct_rankings_base {
     sql: ${TABLE}.service ;;
   }
 
+  dimension: serv_spec_order {
+    hidden: yes
+    sql: CONCAT(${service},"-",${specialty}) ;;
+    alpha_sort: yes
+  }
+
   dimension: specialty {
     type: string
+    order_by_field: serv_spec_order
     sql: ${TABLE}.specialty ;;
+
   }
+
+  dimension: serv_spec_term_order {
+    hidden: yes
+    sql: CONCAT(${service},"-",${specialty},"-",${search_term}) ;;
+    alpha_sort: yes
+    }
 
   dimension: tier {
     type: string
